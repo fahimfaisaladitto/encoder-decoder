@@ -1,0 +1,132 @@
+/* --- Custom CSS Variables for Theming --- */
+:root {
+    --bg-body: #f3f4f6;
+    --bg-card: rgba(255, 255, 255, 0.5);
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --border-card: rgba(255, 255, 255, 0.4);
+    --toggle-bg: #d1d5db;
+    --toggle-ball-bg: #ffffff;
+    --accent-color: #008cff;
+    --input-bg: rgba(0, 0, 0, 0.05);
+    --result-bg: rgba(0, 0, 0, 0.05);
+}
+
+html.dark {
+    --bg-body: #111827;
+    --bg-card: rgba(31, 41, 55, 0.5);
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --border-card: rgba(55, 65, 81, 0.5);
+    --toggle-bg: #374151;
+    --toggle-ball-bg: #111827;
+    --input-bg: rgba(0, 0, 0, 0.2);
+    --result-bg: rgba(0, 0, 0, 0.2);
+}
+
+/* --- Applying Variables --- */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+.main-card {
+    background-color: var(--bg-card);
+    border-color: var(--border-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+.text-secondary { color: var(--text-secondary); }
+.toggle-bg { background-color: var(--toggle-bg); }
+.toggle-ball { background-color: var(--toggle-ball-bg); }
+.accent-text { color: var(--accent-color); }
+.accent-bg { background-color: var(--accent-color); }
+.input-field { 
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+.result-box { 
+    background-color: var(--result-bg); 
+}
+
+/* Custom select arrow */
+select.input-field {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
+
+/* --- Mode Slider Styles --- */
+.mode-slider {
+    position: relative;
+    display: flex;
+    background-color: var(--input-bg);
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+    width: 100%;
+}
+.mode-slider-button {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10;
+}
+.mode-slider-button.active {
+    color: var(--text-primary);
+}
+html.dark .mode-slider-button.active {
+     color: var(--text-primary);
+}
+.mode-slider-button:not(.active) {
+    color: var(--text-secondary);
+}
+.slider-indicator {
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    width: calc(50% - 0.25rem);
+    background-color: var(--bg-card);
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease-in-out;
+    z-index: 5;
+}
+
+/* --- Content Area for consistent height --- */
+.content-area {
+    min-height: 350px; 
+}
+
+/* --- Custom File Upload Styles --- */
+.file-drop-area {
+    border: 2px dashed var(--toggle-bg);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.file-drop-area.dragover {
+    background-color: var(--input-bg);
+    border-color: var(--accent-color);
+}
+
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
